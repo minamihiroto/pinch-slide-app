@@ -6,23 +6,34 @@ import "slick-carousel/slick/slick-theme.css";
 
 const ZoomableBox = styled.div`
   transition: transform 0.3s;
-  transform-origin: top; // 変更
+  transform-origin: top;
   &.zoom-in {
     transform: scale(4);
   }
 `;
 
-const ButtonWrapper = styled.div`
+const NavigationButtons = styled.div`
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  top: 20px;
+  left: 20px;
 `;
 
 const Home = () => {
   const blueBox = createRef<HTMLDivElement>();
+  const sliderRef = createRef<Slider>();
+
+  const goToSlide = (index: number) => {
+    sliderRef.current?.slickGoTo(index);
+    if (!blueBox.current?.classList.contains("zoom-in")) {
+      blueBox.current?.classList.toggle("zoom-in");
+    }
+  };
 
   const handleBlueBoxClick = () => {
-    blueBox.current?.classList.toggle("zoom-in");
+    if (blueBox.current?.classList.contains("zoom-in")) {
+      blueBox.current.classList.toggle("zoom-in");
+    }
+    sliderRef.current?.slickGoTo(2);
   };
 
   const settings = {
@@ -37,31 +48,98 @@ const Home = () => {
     swipe: false,
   };
 
+  React.useEffect(() => {
+    goToSlide(0);
+    if (!blueBox.current?.classList.contains("zoom-in")) {
+      blueBox.current?.classList.toggle("zoom-in");
+    }
+  });
+
   return (
-    <>
+    <div style={{ margin: "60px 0px 0px 0px" }}>
+      <style jsx global>{`
+        body {
+          overflow-x: hidden;
+        }
+      `}</style>
       <ZoomableBox ref={blueBox} style={{ backgroundColor: "blue" }}>
-        <Slider {...settings}>
+        <Slider {...settings} ref={sliderRef}>
           <div>
-            <p style={{height:"180px",width: "200px",background: "red",textAlign:"center"}}>aaaaaaaaaaa</p>
+            <p
+              style={{
+                height: "180px",
+                width: "200px",
+                background: "red",
+                textAlign: "center",
+                color: "black",
+              }}
+            >
+              aaaaaaaaaaa
+            </p>
           </div>
           <div>
-            <p  style={{height:"130px",width: "200px",background: "white",textAlign:"center"}}>bbbbbbbbbbbbb</p>
+            <p
+              style={{
+                height: "130px",
+                width: "200px",
+                background: "white",
+                textAlign: "center",
+                color: "black",
+              }}
+            >
+              bbbbbbbbbbbbb
+            </p>
           </div>
           <div>
-            <p style={{height:"100px",width: "200px",background: "red",textAlign:"center"}}>ccccccccccccc</p>
+            <p
+              style={{
+                height: "100px",
+                width: "200px",
+                background: "red",
+                textAlign: "center",
+                color: "black",
+              }}
+            >
+              ccccccccccccc
+            </p>
           </div>
           <div>
-            <p style={{width: "200px",background: "white",textAlign:"center"}}>dddddddddddddd</p>
+            <p
+              style={{
+                height: "160px",
+                width: "200px",
+                background: "white",
+                textAlign: "center",
+                color: "black",
+              }}
+            >
+              dddddddddddddd
+            </p>
           </div>
           <div>
-            <p style={{width: "200px",background: "red",textAlign:"center"}}>eeeeeeeeeeeeeee</p>
+            <p
+              style={{
+                height: "300px",
+                width: "200px",
+                background: "red",
+                textAlign: "center",
+                color: "black",
+              }}
+            >
+              eeeeeeeeeeeeeee
+            </p>
           </div>
         </Slider>
       </ZoomableBox>
-      <ButtonWrapper>
+      <NavigationButtons>
+        <button onClick={() => goToSlide(0)}>1枚目へ</button>
+        <button onClick={() => goToSlide(1)}>2枚目へ</button>
+        <button onClick={() => goToSlide(2)}>3枚目へ</button>
+        <button onClick={() => goToSlide(3)}>4枚目へ</button>
+        <button onClick={() => goToSlide(4)}>5枚目へ</button>
         <button onClick={handleBlueBoxClick}>ピンチ設定</button>
-      </ButtonWrapper>
-    </>
+      </NavigationButtons>
+    </div>
   );
 };
 
