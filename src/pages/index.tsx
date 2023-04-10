@@ -70,7 +70,7 @@ const Home = () => {
   });
 
   return (
-    <div style={{ margin: "60px 0px 0px 0px" }}>
+    <div style={{ margin: "80px 0px 0px 0px" }}>
       <style jsx global>{`
         body {
           overflow-x: hidden;
