@@ -6,13 +6,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ZoomableBox = styled.div`
-  width: 1000px;
-  height: 1000px;
+  width: 100%;
   margin: 50px;
   transition: transform 0.3s;
 
   &.zoom-in {
-    transform: scale(1.2);
+    transform: scale(0.2);
   }
 `;
 
@@ -22,48 +21,20 @@ const ButtonWrapper = styled.div`
   right: 20px;
 `;
 
-const zoomIn = css`
-  .zoom-in {
-    transform: scale(1.2);
-    transition: transform 0.3s;
-  }
-`;
-
 const Home = () => {
-  const blueBox = createRef<HTMLDivElement>();
+  const box = createRef<HTMLDivElement>();
 
   const handleBlueBoxClick = () => {
-    blueBox.current?.classList.toggle("zoom-in");
-  };
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
+    box.current?.classList.toggle("zoom-in");
   };
 
   return (
     <>
-      <Global styles={zoomIn} />
-      <ZoomableBox ref={blueBox} style={{ backgroundColor: "blue" }}>
-        <Slider {...settings}>
-          <div>
-            <p>aaaaaaaaaaa</p>
-          </div>
-          <div>
-            <p>bbbbbbbbbbbbb</p>
-          </div>
-          <div>
-            <p>ccccccccccccc</p>
-          </div>
-        </Slider>
+      <ZoomableBox ref={box}>
+        ここにカルーセル
       </ZoomableBox>
       <ButtonWrapper>
-        <button onClick={handleBlueBoxClick}>青い四角のアウト</button>
+        <button onClick={handleBlueBoxClick}>ピンチイン・アウト</button>
       </ButtonWrapper>
     </>
   );
