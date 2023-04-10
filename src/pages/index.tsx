@@ -16,6 +16,20 @@ const NavigationButtons = styled.div`
   position: fixed;
   top: 20px;
   left: 20px;
+
+  button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
 `;
 
 const Home = () => {
@@ -132,12 +146,12 @@ const Home = () => {
         </Slider>
       </ZoomableBox>
       <NavigationButtons>
-        <button onClick={() => goToSlide(0)}>1枚目へ</button>
-        <button onClick={() => goToSlide(1)}>2枚目へ</button>
-        <button onClick={() => goToSlide(2)}>3枚目へ</button>
-        <button onClick={() => goToSlide(3)}>4枚目へ</button>
-        <button onClick={() => goToSlide(4)}>5枚目へ</button>
-        <button onClick={handleBlueBoxClick}>ピンチ設定</button>
+        <button onClick={() => goToSlide(0)}>ステージ1</button>
+        <button onClick={() => goToSlide(1)}>ステージ2</button>
+        <button onClick={() => goToSlide(2)}>ステージ3</button>
+        <button onClick={() => goToSlide(3)}>ステージ4</button>
+        <button onClick={() => goToSlide(4)}>ステージ5</button>
+        <button onClick={handleBlueBoxClick}>全体像把握</button>
       </NavigationButtons>
     </div>
   );
